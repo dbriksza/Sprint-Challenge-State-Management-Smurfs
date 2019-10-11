@@ -77,12 +77,9 @@ const mapStateToProps = state => {
     error: state.error
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchSmurfs: () => dispatch({ type: "FETCH_SMURFS" }),
-    postSmurfs: (name, age, height) =>
-      dispatch({ type: "POST_SMURFS", payload: { name, age, height } })
-  };
+const mapDispatchToProps = {
+  fetchSmurfs,
+  postSmurfs
 };
 export default connect(
   mapStateToProps,
