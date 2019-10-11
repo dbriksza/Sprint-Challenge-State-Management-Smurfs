@@ -7,7 +7,7 @@ import {
   POST_FAILURE
 } from "../actions/index";
 
-const initialState = {
+export const initialState = {
   smurfs: [],
   isFethching: false,
   isPosting: false,

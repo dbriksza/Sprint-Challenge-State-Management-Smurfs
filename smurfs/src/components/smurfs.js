@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useState, useReducer } from "react";
+import { useState } from "react";
 import { postSmurfs } from "../actions/index";
-
 import { fetchSmurfs } from "../actions/index";
 
 import Smurf from "./smurf";
@@ -25,7 +24,7 @@ const SmurfInfo = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    postSmurfs(name, age, height);
+    props.postSmurfs(name, age, height);
     setName("");
     setAge("");
     setHeight("");
@@ -78,7 +77,14 @@ const mapStateToProps = state => {
     error: state.error
   };
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSmurfs: () => dispatch({ type: "FETCH_SMURFS" }),
+    postSmurfs: (name, age, height) =>
+      dispatch({ type: "POST_SMURFS", payload: { name, age, height } })
+  };
+};
 export default connect(
   mapStateToProps,
-  { fetchSmurfs }
+  mapDispatchToProps
 )(SmurfInfo);
